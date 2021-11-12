@@ -9,8 +9,7 @@ pipeline {
        
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "35.188.146.248:8081"
-        NEXUS_REPOSITORY = "maven-snapshots"
-        NEXUS_REPO_ID    = "maven-snapshots"
+        NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         ARTVERSION = "${env.BUILD_ID}"
     }
