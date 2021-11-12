@@ -6,12 +6,12 @@ pipeline {
         maven "M3"
     }
      environment {
-       
+        NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "35.188.146.248:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
-        ARTVERSION = "${env.BUILD_ID}"
+        
     }
 
     stages {
@@ -40,13 +40,13 @@ pipeline {
                     artifactPath = filesByGlob[0].path;
                     artifactExists = fileExists artifactPath;
                     if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version} ARTVERSION";
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                         nexusArtifactUploader(
-                     
+                            nexusVersion: NEXUS_VERSION,
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
                             groupId: pom.groupId,
-                            version: ARTVERSION,
+                            version: pom.version,
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
@@ -60,8 +60,7 @@ pipeline {
                                 type: "pom"]
                             ]
                         );
-                    } 
-                   else {
+                    } else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
                 }
