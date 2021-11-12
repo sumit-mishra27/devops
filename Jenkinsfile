@@ -6,11 +6,11 @@ pipeline {
         maven "M3"
     }
      environment {
-        NEXUS_VERSION = "nexus3"
+       
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "35.188.146.248:8081"
-        NEXUS_REPOSITORY = "maven-snapshot"
-    NEXUS_REPO_ID    = "maven-snapshot"
+        NEXUS_REPOSITORY = "maven-snapshots"
+        NEXUS_REPO_ID    = "maven-snapshots"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         ARTVERSION = "${env.BUILD_ID}"
     }
@@ -43,7 +43,7 @@ pipeline {
                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version} ARTVERSION";
                         nexusArtifactUploader(
-                            nexusVersion: NEXUS_VERSION,
+                     
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
                             groupId: pom.groupId,
