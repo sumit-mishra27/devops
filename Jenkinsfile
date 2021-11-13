@@ -68,7 +68,7 @@ pipeline {
 
         stage('copying file to opt'){
             steps{
-                sh "cp -r /home/rsa-key-20211027/jenkins-agent/workspace/pipelene_with_docker_nexus/target/*.jar /opt"
+                sh "/var/lib/jenkins/workspace/1stjob/target/*.jar /opt"
             }
         }
     }
