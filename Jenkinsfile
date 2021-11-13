@@ -68,7 +68,7 @@ pipeline {
 
         stage('copying file to opt'){
             steps{
-                sh "cp -r /var/lib/jenkins/workspace/1stjob/target/*.jar /opt"
+                sh "sudo cp -r /var/lib/jenkins/workspace/1stjob/target/*.jar /opt"
             }
         }
     }
