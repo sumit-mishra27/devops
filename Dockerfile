@@ -1,5 +1,3 @@
-FROM java:8
-WORKDIR /
-ADD core-app-1.0-SNAPSHOT.jar core-app-1.0-SNAPSHOT.jar
-EXPOSE 8082
-CMD java - jar core-app-1.0-SNAPSHOT.jar
+FROM openjdk:11.0.5-jdk
+COPY /workspace/1stjob/target*.jar app.jar
+ENTRYPOINT java -jar app.jar
